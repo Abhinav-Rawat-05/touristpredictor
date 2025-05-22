@@ -1,7 +1,7 @@
 import requests
 
 def get_weather_on_date(location, date):
-    api_key = "7TBWJTHY3NEYABGSMZ2A4C6YM"
+    api_key = "YOUR-API-KEY"
     base_url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline"
     url = f"{base_url}/{location}/{date}?unitGroup=metric&key={api_key}&include=days"
 
