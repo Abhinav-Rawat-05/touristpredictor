@@ -6,7 +6,7 @@ def get_articles_for_location(location, date):
     """Fetches news articles for a given tourist location and date range using News API."""
     from_date = (date - timedelta(days=2)).strftime('%Y-%m-%d')
     to_date = (date + timedelta(days=2)).strftime('%Y-%m-%d')
-    api_key = "fc895b2efb5845cd815127e742f6f897"
+    api_key = "YOUR-API-KEY"
 
     url = (
         f"https://newsapi.org/v2/everything?"
