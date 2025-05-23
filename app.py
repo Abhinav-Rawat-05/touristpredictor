@@ -4,14 +4,14 @@ import joblib
 from datetime import datetime
 import time
 
-from utils.preprocess import load_processed_data, feature_engineer_date
+from utils.preprocess import load_tourism_data, feature_engineer_date
 from utils.fetch_weather import get_weather_on_date
 from utils.fetch_events import get_articles_for_location
 from utils.fetch_trends import get_trend_score
 from utils.visualize import plot_historical_patterns
 
 # Load data & model
-df = load_processed_data('data/processed_data.csv')
+df = load_tourism_data('data/processed_data.csv')
 model = joblib.load('models/tourism_classifier.pkl')
 site_encoder = joblib.load('models/site_encoder.pkl')
 target_encoder = joblib.load('models/target_encoder.pkl')
@@ -19,7 +19,7 @@ target_encoder = joblib.load('models/target_encoder.pkl')
 st.set_page_config(page_title="Uttarakhand Trip Condition Predictor", layout="wide")
 st.title("Uttarakhand Trip Condition Predictor")
 
-# --- Sidebar inputs ---
+# Sidebar inputs
 with st.sidebar:
     st.header("Your Trip Details")
     trip_date = st.date_input("Select trip date", min_value=datetime.today())
@@ -29,10 +29,10 @@ if st.button("Predict"):
     # 1) Feature engineer the date
     feat = feature_engineer_date(df, site, pd.to_datetime(trip_date))
 
-    # --- Encode site column ---
+    # Encode site column
     feat['site'] = site_encoder.transform([site])[0]
 
-    # --- Align columns to model's expected features ---
+    # Align columns to model's expected features
     # This ensures the DataFrame columns are in the same order and set as during training
     feat = feat.reindex(columns=model.feature_names_in_, fill_value=0)
 

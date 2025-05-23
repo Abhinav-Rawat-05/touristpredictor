@@ -3,7 +3,6 @@ from datetime import timedelta
 
 
 def get_articles_for_location(location, date):
-    """Fetches news articles for a given tourist location and date range using News API."""
     from_date = (date - timedelta(days=2)).strftime('%Y-%m-%d')
     to_date = (date + timedelta(days=2)).strftime('%Y-%m-%d')
     api_key = "YOUR-API-KEY"

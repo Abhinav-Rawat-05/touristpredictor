@@ -5,12 +5,6 @@ def load_tourism_data(path):
     df = pd.read_csv(path, parse_dates=['date'])
     return df
 
-def merge_data(df):
-    return df.copy()
-
-def load_processed_data(path):
-    return pd.read_csv(path, parse_dates=['date'])
-
 def feature_engineer_date(full_df, site, date):
     out = {}
     out['month'] = date.month

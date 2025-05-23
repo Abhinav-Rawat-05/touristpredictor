@@ -11,5 +11,5 @@ def get_trend_score(place, geo='IN'):
         else:
             return 0
     except Exception as e:
-        print(f"[Trend Error] {e}")
+        #Trend Error
         return 0

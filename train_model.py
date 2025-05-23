@@ -8,7 +8,7 @@ from xgboost import XGBClassifier
 import joblib
 from tqdm import tqdm
 
-from utils.preprocess import load_tourism_data, merge_data, feature_engineer_date
+from utils.preprocess import load_tourism_data, feature_engineer_date
 
 # Create necessary directories
 os.makedirs('data', exist_ok=True)
@@ -17,7 +17,7 @@ os.makedirs('models', exist_ok=True)
 # Load and merge raw data
 print("Loading and merging data...")
 raw = load_tourism_data('data/tourism_data.csv')
-df = merge_data(raw)
+df = raw.copy()
 
 # Feature engineering
 print("Generating features...")
@@ -42,7 +42,7 @@ for idx, row in tqdm(df.iterrows(), total=len(df), desc="Processing rows"):
     if isinstance(feat, dict):
         feat['site'] = row['site']  # Keep site for encoding
         feat['tourists'] = row['tourists']
-        feat['date'] = row['date']  # <--- Add this line to keep 'date'
+        feat['date'] = row['date']  # Keep date for later use
         feature_rows.append(feat)
     else:
         skipped += 1
